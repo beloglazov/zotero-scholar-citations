@@ -81,8 +81,8 @@ Zotero.ScholarCitations.updateItems = function(items) {
 		return;
 	}
 	
-    Zotero.UnresponsiveScriptIndicator.disable();
-    Zotero_File_Interface.Progress.show("Updating citations...");	
+    //Zotero.UnresponsiveScriptIndicator.disable();
+    //Zotero_File_Interface.Progress.show("Updating citations...");	
 	
 	Zotero.ScholarCitations.current = 0;
 	Zotero.ScholarCitations.toUpdate = items.length;
@@ -93,8 +93,8 @@ Zotero.ScholarCitations.updateItems = function(items) {
 
 Zotero.ScholarCitations.updateNextItem = function() {
 	if (Zotero.ScholarCitations.current >= Zotero.ScholarCitations.toUpdate) {
-		Zotero_File_Interface.Progress.close();
-		Zotero.UnresponsiveScriptIndicator.enable();	
+		//Zotero_File_Interface.Progress.close();
+		//Zotero.UnresponsiveScriptIndicator.enable();	
 		if (Zotero.ScholarCitations.failed) {
 			alert("Some of the requests to Google Scholar failed. Probably due to large number of requests.");
 		}

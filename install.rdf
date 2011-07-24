@@ -5,14 +5,14 @@
   <RDF:Description RDF:about="rdf:#$x61SL3"
                    em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
                    em:minVersion="2.0"
-                   em:maxVersion="4.0.*"/>
+                   em:maxVersion="6.*.*"/>
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="zoteroscholarcitations@beloglazov.info"
                    em:name="Zotero Scholar Citations"
-                   em:version="1.3"
+                   em:version="1.4"
 				   em:type="2"
                    em:creator="Anton Beloglazov"
-                   em:description="Zotero plugin for auto-fetching number of citations from Google Scholar"
+                   em:description="Zotero plugin for auto-fetching numbers of citations from Google Scholar"
                    em:homepageURL="http://beloglazov.info">
     <em:targetApplication RDF:resource="rdf:#$x61SL3"/>
 	<em:type>2</em:type>

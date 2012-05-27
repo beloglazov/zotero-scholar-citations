@@ -3,24 +3,24 @@
 <!DOCTYPE overlay SYSTEM "chrome://zoteroscholarcitations/locale/overlay.dtd">
 
 <overlay id="zoteroscholarcitations"
-	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-
-    <script type="application/x-javascript" src="scripts/zoteroscholarcitations.js" />
-
-    <menupopup id="zotero-tb-actions-popup">
-        <menuitem id="zoteroscholarcitations-tb-actions-export-playground"
-            label="&zotero.scholarcitations.updateAll.label;"
-            insertbefore="zotero-tb-actions-utilities-separator"
-            oncommand="Zotero.ScholarCitations.updateAll();"
-        />
-    </menupopup>
-	
-	<popup id="zotero-collectionmenu">
-		<menuitem id="zotero-collectionmenu-scholarcitations" label="&zotero.scholarcitations.update.label;" oncommand="Zotero.ScholarCitations.updateSelectedEntity()"/>
-	</popup>
-	
-	<popup id="zotero-itemmenu" onpopupshowing="ZoteroPane.buildItemContextMenu();">
-		<menuitem id="zotero-itemmenu-scholarcitations" label="&zotero.scholarcitations.update.label;" oncommand="Zotero.ScholarCitations.updateSelectedItems()"/>
-	</popup>
-
+	 xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  
+  <script type="application/x-javascript" src="scripts/zoteroscholarcitations.js" />
+  
+  <menupopup id="zotero-tb-actions-popup">
+    <menuitem id="zoteroscholarcitations-tb-actions-export-playground"
+              label="&zotero.scholarcitations.updateAll.label;"
+              insertbefore="zotero-tb-actions-utilities-separator"
+              oncommand="Zotero.ScholarCitations.updateAll();"
+              />
+  </menupopup>
+  
+  <popup id="zotero-collectionmenu">
+    <menuitem id="zotero-collectionmenu-scholarcitations" label="&zotero.scholarcitations.update.label;" oncommand="Zotero.ScholarCitations.updateSelectedEntity()"/>
+  </popup>
+  
+  <popup id="zotero-itemmenu" onpopupshowing="ZoteroPane.buildItemContextMenu();">
+    <menuitem id="zotero-itemmenu-scholarcitations" label="&zotero.scholarcitations.update.label;" oncommand="Zotero.ScholarCitations.updateSelectedItems()"/>
+  </popup>
+  
 </overlay>

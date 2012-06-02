@@ -122,7 +122,7 @@ Zotero.ScholarCitations.updateItem = function(item) {
 	Zotero.ScholarCitations.updateNextItem();
 	return;
     }
-    var url = 'http://scholar.google.com/scholar?hl=en&as_q=' + encodeURIComponent(item.getField('title')).replace(/ /g, '+') + '&num=1';
+    var url = 'http://scholar.google.com/scholar?hl=en&as_q=' + encodeURIComponent(item.getField('title')).replace(/ /g, '+') + '&as_occt=title&num=1';
     
     var date = 	item.getField('date');
     if (date != '') {

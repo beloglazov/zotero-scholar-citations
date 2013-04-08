@@ -4,7 +4,9 @@ This is an add-on for Zotero, a research source management tool. The add-on auto
 
 When updating multiple citations in a batch, the add-on makes a 1 minute delay after every 50 items to try to avoid being blocked by Google Scholar for multiple automated requests. If a blockage happens, the add-on opens a browser window and directs it to http://scholar.google.com/, which may result in two distinct cases. In one case, Google Scholar displays a Captcha, which you need to enter to get unblocked and then re-try updating the citations. In the other case, Google Scholar displays a message like the following "We're sorry... but your computer or network may be sending automated queries. To protect our users, we can't process your request right now." In that case, the only solution is to wait for a while until Google unblocks you.
 
-Currently, Zotero doesn't have any special field for the number of citations, that's why it is stored in the "Call Number" field. To sort by this field you have to add it in the source listing table.
+Currently, Zotero doesn't have any special field for the number of citations, that's why it is stored in the "Extra" field. To sort by this field you have to add it in the source listing table.
+
+*IMPORTANT:* in version 1.8 the field for storing the number of citations has been changed from "Call Number" to "Extra" -- please update your column configuration. 
 
 The add-on supports both versions of Zotero:
 

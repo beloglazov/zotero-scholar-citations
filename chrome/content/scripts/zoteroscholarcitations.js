@@ -140,7 +140,8 @@ Zotero.ScholarCitations.updateItem = function(item) {
                 if (item.isRegularItem() && !item.isCollection()) {
                     var citations = Zotero.ScholarCitations.getCitationCount(req.responseText);
                     try {
-                        item.setField('callNumber', citations);
+                        //item.setField('callNumber', citations);
+                        item.setField('extra', citations);
                         item.save();    
                     } catch (e) {}        
                 }                

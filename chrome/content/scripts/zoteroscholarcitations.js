@@ -141,7 +141,7 @@ Zotero.ScholarCitations.updateItem = function(item) {
                     var citations = Zotero.ScholarCitations.getCitationCount(req.responseText);
                     try {
                         //item.setField('callNumber', citations);
-                        item.setField('extra', citations);
+                        item.setField('extra', 'Cited by ' + citations);
                         item.save();    
                     } catch (e) {}        
                 }                

@@ -1,11 +1,11 @@
-Zotero.ScholarCitations = {};    
+Zotero.ScholarCitations = {};
 
 Zotero.ScholarCitations.init = function() {
     Zotero.ScholarCitations.resetState();
 
     // Register the callback in Zotero as an item observer
     var notifierID = Zotero.Notifier.registerObserver(Zotero.ScholarCitations.notifierCallback, ['item']);
-    
+
     // Unregister callback when the window closes (important to avoid a memory leak)
     window.addEventListener('unload', function(e) {
                 Zotero.Notifier.unregisterObserver(notifierID);
@@ -16,7 +16,7 @@ Zotero.ScholarCitations.notifierCallback = {
     notify: function(event, type, ids, extraData) {
         if (event == 'add') {
             Zotero.ScholarCitations.updateItems(Zotero.Items.get(ids));
-        }        
+        }
     }
 };
 
@@ -33,16 +33,16 @@ Zotero.ScholarCitations.updateSelectedEntity = function(libraryId) {
         ZoteroPane.displayCannotEditLibraryMessage();
         return;
     }
-    
+
     var collection = ZoteroPane.getSelectedCollection();
-    var group = ZoteroPane.getSelectedGroup();    
-    
+    var group = ZoteroPane.getSelectedGroup();
+
     if (collection) {
         var items = [];
         var _items = collection.getChildren(true, false, 'item');
         for each(var item in _items) {
             items.push(Zotero.Items.get(item.id));
-        }        
+        }
         Zotero.ScholarCitations.updateItems(items);
     } else if (group) {
         if (!group.editable) {
@@ -98,7 +98,7 @@ Zotero.ScholarCitations.updateNextItem = function() {
         Zotero.ScholarCitations.numberOfUpdatedItems % 50 == 0) {
         // 60 seconds delay after every 50 items
         Zotero.ScholarCitations.delay = true;
-        setTimeout(Zotero.ScholarCitations.updateNextItem, 60000); 
+        setTimeout(Zotero.ScholarCitations.updateNextItem, 60000);
         return;
     }
     Zotero.ScholarCitations.delay = false;
@@ -120,12 +120,12 @@ Zotero.ScholarCitations.updateItem = function(item) {
     }
     var baseUrl = 'http://scholar.google.com/';
     var url = baseUrl + 'scholar?hl=en&as_q=' + encodeURIComponent(item.getField('title')).replace(/ /g, '+') + '&as_occt=title&num=1';
-    
+
     var date = item.getField('date');
     if (date != '') {
         url += '&as_ylo=' + date + '&as_yhi=' + date;
     }
-    
+
     var creators = item.getCreators();
     if (creators.length > 0) {
         url += '&as_sauthors=' + encodeURIComponent(creators[0].ref.lastName).replace(/ /g, '+');
@@ -133,8 +133,8 @@ Zotero.ScholarCitations.updateItem = function(item) {
 
     var req = new XMLHttpRequest();
     req.open('GET', url, true);
-    
-    req.onreadystatechange = function(aEvt) {
+
+    req.onreadystatechange = function() {
         if (req.readyState == 4) {
             if (req.status == 200) {
                 if (item.isRegularItem() && !item.isCollection()) {
@@ -142,34 +142,38 @@ Zotero.ScholarCitations.updateItem = function(item) {
                     try {
                         //item.setField('callNumber', citations);
                         item.setField('extra', 'Cited by ' + citations);
-                        item.save();    
-                    } catch (e) {}        
-                }                
-                Zotero.ScholarCitations.updateNextItem();                    
+                        item.save();
+                    } catch (e) {}
+                }
+                Zotero.ScholarCitations.updateNextItem();
             } else {
-                alert('Please enter the Captcha on the page that will now open and then re-try updating the citations, ' + 
+                alert('Please enter the Captcha on the page that will now open and then re-try updating the citations, ' +
                       'or wait a while to get unblocked by Google if the Captcha is not present.')
                 req2 = new XMLHttpRequest();
-                req2.open('GET', baseUrl, false);
-                req2.send();
-                if (typeof ZoteroStandalone !== 'undefined') {
-                    ZoteroStandalone.openInViewer(baseUrl); 
-                } else {
-                    window.gBrowser.loadOneTab(baseUrl, {inBackground: false});
-                }
-                Zotero.ScholarCitations.resetState();
-            }            
+                req2.open('GET', baseUrl, true);
+		req2.onreadystatechange = function() {
+		    if (req.readyState == 4) {
+			if (typeof ZoteroStandalone !== 'undefined') {
+			    ZoteroStandalone.openInViewer(baseUrl);
+			} else {
+			    window.gBrowser.loadOneTab(baseUrl, {inBackground: false});
+			}
+			Zotero.ScholarCitations.resetState();
+		    }
+		}
+                req2.send(null);
+            }
         }
-    };    
-    
-    req.send(null);        
+    };
+
+    req.send(null);
 };
 
 Zotero.ScholarCitations.fillZeros = function(number) {
     var output = '';
     var cnt = 4 - number.length;
     for (var i = 0; i < cnt; i++) {
-        output += '0';        
+        output += '0';
     }
     output += number;
     return output;
@@ -179,21 +183,21 @@ Zotero.ScholarCitations.getCitationCount = function(responseText) {
     if (responseText == '') {
         return '0000';
     }
-    
+
     var citeStringLength = 15;
     var lengthOfCiteByStr = 9;
     var citeArray = new Array();
-    
+
     var citeExists = responseText.search('Cited by');
     if (citeExists == -1) {
         return '0000';
     }
-    
+
     var tmpString = responseText.substr(citeExists, citeStringLength);
     var end = tmpString.indexOf('<') - lengthOfCiteByStr;
     return Zotero.ScholarCitations.fillZeros(tmpString.substr(lengthOfCiteByStr, end));
 };
 
-window.addEventListener('load', function(e) { 
-    Zotero.ScholarCitations.init(); 
+window.addEventListener('load', function(e) {
+    Zotero.ScholarCitations.init();
 }, false);

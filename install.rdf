@@ -9,7 +9,7 @@
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="zoteroscholarcitations@beloglazov.info"
                    em:name="Zotero Scholar Citations"
-                   em:version="1.8"
+                   em:version="1.8.1"
 		   em:type="2"
                    em:creator="Anton Beloglazov"
                    em:description="Zotero plugin for auto-fetching numbers of citations from Google Scholar"
@@ -21,7 +21,7 @@
         <em:minVersion>3.0b1</em:minVersion>
         <em:maxVersion>4.0.*</em:maxVersion>
       </Description>
-    </em:targetApplication>    
+    </em:targetApplication>
     <em:type>2</em:type>
   </RDF:Description>
 </RDF:RDF>

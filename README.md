@@ -6,12 +6,12 @@ When updating multiple citations in a batch, the add-on makes a 1 minute delay a
 
 Currently, Zotero doesn't have any special field for the number of citations, that's why it is stored in the "Extra" field. To sort by this field you have to add it in the source listing table.
 
-*IMPORTANT:* in version 1.8 the field for storing the number of citations has been changed from "Call Number" to "Extra" -- please update your column configuration. 
+*IMPORTANT:* in version 1.8 the field for storing the number of citations has been changed from "Call Number" to "Extra" -- please update your column configuration.
 
 The add-on supports both versions of Zotero:
 
-1. Zotero Standalone: 
-  - Download the add-on from https://github.com/beloglazov/zotero-scholar-citations/raw/master/builds/zotero-scholar-citations-1.8-fx.xpi
+1. Zotero Standalone:
+  - Download the add-on from https://github.com/beloglazov/zotero-scholar-citations/raw/master/builds/zotero-scholar-citations-1.8.1-fx.xpi
   - In Zotero Standalone go to Tools -> Add-ons -> click the settings button in the top-right corner -> Install Add-on From File -> select the downloaded file and restart Zotero.
 2. Zotero for Firefox:
   - Install the Firefox add-on from https://addons.mozilla.org/en-us/firefox/addon/zotero-scholar-citations/

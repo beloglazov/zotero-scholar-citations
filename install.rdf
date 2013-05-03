@@ -22,6 +22,20 @@
         <em:maxVersion>4.0.*</em:maxVersion>
       </Description>
     </em:targetApplication>
+    <em:localized>
+      <Description>
+	<em:locale>en-US</em:locale>
+	<em:name>Zotero Scholar Citations</em:name>
+          <em:description>Zotero plugin for auto-fetching numbers of citations from Google Scholar.</em:description>
+      </Description>
+    </em:localized>
+    <em:localized>
+<Description>
+	<em:locale>it-IT</em:locale>
+	<em:name>Zotero Scholar Citations</em:name>
+          <em:description>Plugin di Zotero per il recupero automatico del numero di citazioni in Google Scholar.</em:description>
+      </Description>
+    </em:localized>
     <em:type>2</em:type>
   </RDF:Description>
 </RDF:RDF>

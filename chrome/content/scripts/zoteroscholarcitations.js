@@ -149,6 +149,8 @@ Zotero.ScholarCitations.updateItem = function(item) {
             } else {
                 alert('Please enter the Captcha on the page that will now open and then re-try updating the citations, ' +
                       'or wait a while to get unblocked by Google if the Captcha is not present.')
+                      ('Per piacere inserisci il codice Captcha nella pagina che si aprirà ora e riprova ad aggiornare le citazioni, ' +
+                      'oppure attendi che Google venga sbloccato se il codice Captcha non è presente.')
                 req2 = new XMLHttpRequest();
                 req2.open('GET', baseUrl, true);
 		req2.onreadystatechange = function() {

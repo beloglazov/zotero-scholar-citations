@@ -6,7 +6,15 @@
     id="zoteroscholarcitations"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-    <script type="application/x-javascript" src="scripts/zoteroscholarcitations.js"/>
+    <script
+        type="application/x-javascript"
+        src="chrome://zoteroscholarcitations/content/scripts/zoteroscholarcitations.js"/>
+
+    <stringbundleset id="stringbundleset">
+        <stringbundle
+            id="zoteroscholarcitations-bundle"
+            src="chrome://zoteroscholarcitations/locale/zoteroscholarcitations.properties"/>
+    </stringbundleset>
 
     <menupopup id="zotero-tb-actions-popup">
         <menuitem

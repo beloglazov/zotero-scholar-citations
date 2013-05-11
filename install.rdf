@@ -1,41 +1,44 @@
 <?xml version="1.0"?>
-<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
-         xmlns:NC="http://home.netscape.com/NC-rdf#"
-         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-  <RDF:Description RDF:about="rdf:#$x61SL3"
-                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-                   em:minVersion="2.0"
-                   em:maxVersion="20.*"/>
-  <RDF:Description RDF:about="urn:mozilla:install-manifest"
-                   em:id="zoteroscholarcitations@beloglazov.info"
-                   em:name="Zotero Scholar Citations"
-                   em:version="1.8.1"
-		   em:type="2"
-                   em:creator="Anton Beloglazov"
-                   em:description="Zotero plugin for auto-fetching numbers of citations from Google Scholar"
-                   em:homepageURL="http://beloglazov.info">
-    <em:targetApplication RDF:resource="rdf:#$x61SL3"/>
-    <em:targetApplication>
-      <Description>
-        <em:id>zotero@chnm.gmu.edu</em:id>
-        <em:minVersion>3.0b1</em:minVersion>
-        <em:maxVersion>4.0.*</em:maxVersion>
-      </Description>
-    </em:targetApplication>
-    <em:localized>
-      <Description>
-	<em:locale>en-US</em:locale>
-	<em:name>Zotero Scholar Citations</em:name>
-          <em:description>Zotero plugin for auto-fetching numbers of citations from Google Scholar.</em:description>
-      </Description>
-    </em:localized>
-    <em:localized>
-<Description>
-	<em:locale>it-IT</em:locale>
-	<em:name>Zotero Scholar Citations</em:name>
-          <em:description>Plugin di Zotero per il recupero automatico del numero di citazioni in Google Scholar.</em:description>
-      </Description>
-    </em:localized>
-    <em:type>2</em:type>
-  </RDF:Description>
+<RDF:RDF
+    xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+    xmlns:NC="http://home.netscape.com/NC-rdf#"
+    xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <RDF:Description
+        RDF:about="rdf:#$x61SL3"
+        em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+        em:minVersion="2.0"
+        em:maxVersion="20.*"/>
+    <RDF:Description
+        RDF:about="urn:mozilla:install-manifest"
+        em:id="zoteroscholarcitations@beloglazov.info"
+        em:name="Zotero Scholar Citations"
+        em:version="1.8.2"
+        em:type="2"
+        em:creator="Anton Beloglazov"
+        em:description="Zotero plugin for auto-fetching numbers of citations from Google Scholar"
+        em:homepageURL="http://beloglazov.info">
+        <em:type>2</em:type>
+        <em:targetApplication RDF:resource="rdf:#$x61SL3"/>
+        <em:targetApplication>
+            <Description>
+                <em:id>zotero@chnm.gmu.edu</em:id>
+                <em:minVersion>3.0b1</em:minVersion>
+                <em:maxVersion>4.0.*</em:maxVersion>
+            </Description>
+        </em:targetApplication>
+        <em:localized>
+            <Description>
+                <em:locale>ru-RU</em:locale>
+                <em:name>Zotero Scholar Citations</em:name>
+                <em:description>Плагин для Zotero для автоматической выборки числа цитирований из Google Scholar.</em:description>
+            </Description>
+        </em:localized>
+        <em:localized>
+            <Description>
+                <em:locale>it-IT</em:locale>
+                <em:name>Zotero Scholar Citations</em:name>
+                <em:description>Plugin di Zotero per il recupero automatico del numero di citazioni in Google Scholar.</em:description>
+            </Description>
+        </em:localized>
+    </RDF:Description>
 </RDF:RDF>

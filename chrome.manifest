@@ -3,5 +3,6 @@ content zoteroscholarcitations chrome/content/
 overlay chrome://zotero/content/zoteroPane.xul chrome://zoteroscholarcitations/content/overlay.xul
 
 locale  zoteroscholarcitations  en-US   chrome/locale/en-US/
+locale  zoteroscholarcitations  ru-RU   chrome/locale/ru-RU/
 locale  zoteroscholarcitations  it-IT   chrome/locale/it-IT/
 

@@ -3,7 +3,12 @@ Zotero.ScholarCitations = {};
 
 Zotero.ScholarCitations.init = function() {
     Zotero.ScholarCitations.resetState();
-    Zotero.ScholarCitations.stringBundle = document.getElementById('zoteroscholarcitations-bundle');
+
+    stringBundle = document.getElementById('zoteroscholarcitations-bundle');
+    Zotero.ScholarCitations.captchaString = 'Please enter the Captcha on the page that will now open and then re-try updating the citations, or wait a while to get unblocked by Google if the Captcha is not present.';
+    if (stringBundle != null) {
+        Zotero.ScholarCitations.captchaString = stringBundle.getString('captchaString');
+    }
 
     // Register the callback in Zotero as an item observer
     var notifierID = Zotero.Notifier.registerObserver(Zotero.ScholarCitations.notifierCallback, ['item']);
@@ -148,7 +153,7 @@ Zotero.ScholarCitations.updateItem = function(item) {
                 }
                 Zotero.ScholarCitations.updateNextItem();
             } else {
-                alert(Zotero.ScholarCitations.stringBundle.getString('captchaString'));
+                alert(Zotero.ScholarCitations.captchaString);
                 req2 = new XMLHttpRequest();
                 req2.open('GET', baseUrl, true);
                 req2.onreadystatechange = function() {

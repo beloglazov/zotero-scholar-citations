@@ -6,8 +6,10 @@ Zotero.ScholarCitations.init = function() {
 
     stringBundle = document.getElementById('zoteroscholarcitations-bundle');
     Zotero.ScholarCitations.captchaString = 'Please enter the Captcha on the page that will now open and then re-try updating the citations, or wait a while to get unblocked by Google if the Captcha is not present.';
+    Zotero.ScholarCitations.citedPrefixString = 'Cited by'
     if (stringBundle != null) {
         Zotero.ScholarCitations.captchaString = stringBundle.getString('captchaString');
+        Zotero.ScholarCitations.citedPrefixString = stringBundle.getString('citedPrefixString');
     }
 
     // Register the callback in Zotero as an item observer
@@ -147,7 +149,8 @@ Zotero.ScholarCitations.updateItem = function(item) {
                 if (item.isRegularItem() && !item.isCollection()) {
                     var citations = Zotero.ScholarCitations.getCitationCount(req.responseText);
                     try {
-                        item.setField('extra', 'Cited by ' + citations);
+                        item.setField('extra', Zotero.ScholarCitations.citedPrefixString +
+                                ' ' + citations);
                         item.save();
                     } catch (e) {}
                 }

@@ -9,7 +9,7 @@ Zotero.ScholarCitations.init = function() {
     Zotero.ScholarCitations.citedPrefixString = 'Cited by'
     if (stringBundle != null) {
         Zotero.ScholarCitations.captchaString = stringBundle.getString('captchaString');
-        Zotero.ScholarCitations.citedPrefixString = stringBundle.getString('citedPrefixString');
+        // Zotero.ScholarCitations.citedPrefixString = stringBundle.getString('citedPrefixString');
     }
 
     // Register the callback in Zotero as an item observer

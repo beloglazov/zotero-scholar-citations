@@ -6,7 +6,8 @@ Zotero.ScholarCitations.init = function() {
 
     stringBundle = document.getElementById('zoteroscholarcitations-bundle');
     Zotero.ScholarCitations.captchaString = 'Please enter the Captcha on the page that will now open and then re-try updating the citations, or wait a while to get unblocked by Google if the Captcha is not present.';
-    Zotero.ScholarCitations.citedPrefixString = 'Cited by'
+    // Zotero.ScholarCitations.citedPrefixString = 'Cited by'
+    Zotero.ScholarCitations.citedPrefixString = ''
     if (stringBundle != null) {
         Zotero.ScholarCitations.captchaString = stringBundle.getString('captchaString');
         // Zotero.ScholarCitations.citedPrefixString = stringBundle.getString('citedPrefixString');

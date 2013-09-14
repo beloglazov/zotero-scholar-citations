@@ -1,4 +1,4 @@
 #!/bin/sh
 
-rm builds/zotero-scholar-citations-1.8.2-fx.xpi
-zip -r builds/zotero-scholar-citations-1.8.2-fx.xpi chrome/* chrome.manifest install.rdf
+rm builds/zotero-scholar-citations-1.8.3-fx.xpi
+zip -r builds/zotero-scholar-citations-1.8.3-fx.xpi chrome/* chrome.manifest install.rdf

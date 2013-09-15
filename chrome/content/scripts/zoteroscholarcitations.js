@@ -180,7 +180,7 @@ Zotero.ScholarCitations.updateItem = function(item) {
 
 Zotero.ScholarCitations.fillZeros = function(number) {
     var output = '';
-    var cnt = 4 - number.length;
+    var cnt = 5 - number.length;
     for (var i = 0; i < cnt; i++) {
         output += '0';
     }
@@ -190,7 +190,7 @@ Zotero.ScholarCitations.fillZeros = function(number) {
 
 Zotero.ScholarCitations.getCitationCount = function(responseText) {
     if (responseText == '') {
-        return '0000';
+        return '00000';
     }
 
     var citeStringLength = 15;
@@ -199,7 +199,7 @@ Zotero.ScholarCitations.getCitationCount = function(responseText) {
 
     var citeExists = responseText.search('Cited by');
     if (citeExists == -1) {
-        return '0000';
+        return '00000';
     }
 
     var tmpString = responseText.substr(citeExists, citeStringLength);

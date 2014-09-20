@@ -144,7 +144,8 @@ Zotero.ScholarCitations.updateItem = function(item) {
 
     req.onreadystatechange = function() {
         if (req.readyState == 4) {
-            if (req.status == 200) {
+            if (req.status == 200 &&
+                req.responseText.search("RecaptchaOptions") == -1) {
                 if (item.isRegularItem() && !item.isCollection()) {
                     var citations = Zotero.ScholarCitations.getCitationCount(req.responseText);
                     try {

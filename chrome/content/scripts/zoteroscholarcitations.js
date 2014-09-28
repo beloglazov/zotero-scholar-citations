@@ -12,7 +12,8 @@ Zotero.ScholarCitations.init = function() {
     }
 
     // Register the callback in Zotero as an item observer
-    var notifierID = Zotero.Notifier.registerObserver(Zotero.ScholarCitations.notifierCallback, ['item']);
+    var notifierID = Zotero.Notifier.registerObserver(
+            Zotero.ScholarCitations.notifierCallback, ['item']);
 
     // Unregister callback when the window closes (important to avoid a memory leak)
     window.addEventListener('unload', function(e) {
@@ -33,7 +34,6 @@ Zotero.ScholarCitations.resetState = function() {
     Zotero.ScholarCitations.toUpdate = 0;
     Zotero.ScholarCitations.itemsToUpdate = null;
     Zotero.ScholarCitations.numberOfUpdatedItems = 0;
-    Zotero.ScholarCitations.delay = false;
 };
 
 Zotero.ScholarCitations.updateSelectedEntity = function(libraryId) {
@@ -81,7 +81,9 @@ Zotero.ScholarCitations.updateAll = function() {
     for each(var item in _items) {
         if (item.isRegularItem() && !item.isCollection()) {
             var libraryId = item.getField('libraryID');
-            if (libraryId == null || libraryId == '' || Zotero.Libraries.isEditable(libraryId)) {
+            if (libraryId == null ||
+                    libraryId == '' ||
+                    Zotero.Libraries.isEditable(libraryId)) {
                 items.push(item);
             }
         }
@@ -90,7 +92,8 @@ Zotero.ScholarCitations.updateAll = function() {
 };
 
 Zotero.ScholarCitations.updateItems = function(items) {
-    if (items.length == 0 || Zotero.ScholarCitations.numberOfUpdatedItems < Zotero.ScholarCitations.toUpdate) {
+    if (items.length == 0 ||
+            Zotero.ScholarCitations.numberOfUpdatedItems < Zotero.ScholarCitations.toUpdate) {
         return;
     }
 
@@ -101,15 +104,6 @@ Zotero.ScholarCitations.updateItems = function(items) {
 };
 
 Zotero.ScholarCitations.updateNextItem = function() {
-    if (!Zotero.ScholarCitations.delay &&
-            Zotero.ScholarCitations.numberOfUpdatedItems > 0 &&
-            Zotero.ScholarCitations.numberOfUpdatedItems % 50 == 0) {
-        // 60 seconds delay after every 50 items
-        Zotero.ScholarCitations.delay = true;
-        setTimeout(Zotero.ScholarCitations.updateNextItem, 60000);
-        return;
-    }
-    Zotero.ScholarCitations.delay = false;
     Zotero.ScholarCitations.numberOfUpdatedItems++;
 
     if (Zotero.ScholarCitations.current == Zotero.ScholarCitations.toUpdate - 1) {
@@ -118,7 +112,8 @@ Zotero.ScholarCitations.updateNextItem = function() {
     }
 
     Zotero.ScholarCitations.current++;
-    Zotero.ScholarCitations.updateItem(Zotero.ScholarCitations.itemsToUpdate[Zotero.ScholarCitations.current]);
+    Zotero.ScholarCitations.updateItem(
+            Zotero.ScholarCitations.itemsToUpdate[Zotero.ScholarCitations.current]);
 };
 
 Zotero.ScholarCitations.updateItem = function(item) {
@@ -127,7 +122,10 @@ Zotero.ScholarCitations.updateItem = function(item) {
         return;
     }
     var baseUrl = 'http://scholar.google.com/';
-    var url = baseUrl + 'scholar?hl=en&as_q=' + encodeURIComponent(item.getField('title')).replace(/ /g, '+') + '&as_occt=title&num=1';
+    var url = baseUrl +
+        'scholar?hl=en&as_q=' +
+        encodeURIComponent(item.getField('title')).replace(/ /g, '+') +
+        '&as_occt=title&num=1';
 
     var date = item.getField('date');
     if (date != '') {
@@ -136,7 +134,8 @@ Zotero.ScholarCitations.updateItem = function(item) {
 
     var creators = item.getCreators();
     if (creators.length > 0) {
-        url += '&as_sauthors=' + encodeURIComponent(creators[0].ref.lastName).replace(/ /g, '+');
+        url += '&as_sauthors=' +
+            encodeURIComponent(creators[0].ref.lastName).replace(/ /g, '+');
     }
 
     var req = new XMLHttpRequest();
@@ -144,9 +143,10 @@ Zotero.ScholarCitations.updateItem = function(item) {
 
     req.onreadystatechange = function() {
         if (req.readyState == 4) {
-            if (req.status == 200) {
+            if (req.status == 200 && req.responseText.search("RecaptchaOptions") == -1) {
                 if (item.isRegularItem() && !item.isCollection()) {
-                    var citations = Zotero.ScholarCitations.getCitationCount(req.responseText);
+                    var citations = Zotero.ScholarCitations.getCitationCount(
+                            req.responseText);
                     try {
                         var old = item.getField('extra')
                         if (old.length == 0 || old.search(/^\d{5}$/) != -1) {
@@ -169,7 +169,8 @@ Zotero.ScholarCitations.updateItem = function(item) {
                         if (typeof ZoteroStandalone !== 'undefined') {
                             ZoteroStandalone.openInViewer(baseUrl);
                         } else {
-                            window.gBrowser.loadOneTab(baseUrl, {inBackground: false});
+                            window.gBrowser.loadOneTab(
+                                    baseUrl, {inBackground: false});
                         }
                         Zotero.ScholarCitations.resetState();
                     }
@@ -208,7 +209,8 @@ Zotero.ScholarCitations.getCitationCount = function(responseText) {
 
     var tmpString = responseText.substr(citeExists, citeStringLength);
     var end = tmpString.indexOf('<') - lengthOfCiteByStr;
-    return Zotero.ScholarCitations.fillZeros(tmpString.substr(lengthOfCiteByStr, end));
+    return Zotero.ScholarCitations.fillZeros(
+            tmpString.substr(lengthOfCiteByStr, end));
 };
 
 window.addEventListener('load', function(e) {

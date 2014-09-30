@@ -160,7 +160,9 @@ Zotero.ScholarCitations.updateItem = function(item) {
                     } catch (e) {}
                 }
                 Zotero.ScholarCitations.updateNextItem();
-            } else {
+            } else if (req.status == 200 ||
+                    req.status == 403 ||
+                    req.status == 503) {
                 alert(Zotero.ScholarCitations.captchaString);
                 req2 = new XMLHttpRequest();
                 req2.open('GET', baseUrl, true);

@@ -8,13 +8,11 @@ Currently, Zotero doesn't have any special field for the number of citations, th
 
 *IMPORTANT:* in version 1.8 the field for storing the number of citations has been changed from "Call Number" to "Extra" -- please update your column configuration.
 
-The add-on supports both versions of Zotero:
+The add-on supports both versions of Zotero.
 
-1. Zotero Standalone:
-  - Download the add-on from https://github.com/beloglazov/zotero-scholar-citations/raw/master/builds/zotero-scholar-citations-1.8.5-fx.xpi
-  - In Zotero Standalone go to Tools -> Add-ons -> click the settings button in the top-right corner -> Install Add-on From File -> select the downloaded file and restart Zotero.
-2. Zotero for Firefox:
-  - Install the Firefox add-on from https://addons.mozilla.org/en-us/firefox/addon/zotero-scholar-citations/
+To install:
+  - Download the add-on from https://github.com/bwiernik/zotero-scholar-citations/raw/master/builds/zotero-scholar-citations-1.8.7bw-fx.xpi
+  - Go to Tools -> Add-ons -> click the settings button in the top-right corner -> Install Add-on From File -> select the downloaded file and restart Zotero.
 
 Read about how the add-on was made: http://blog.beloglazov.info/2009/10/zotero-citations-from-scholar-en.html
 

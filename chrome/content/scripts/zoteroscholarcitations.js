@@ -149,7 +149,9 @@ Zotero.ScholarCitations.updateItem = function(item) {
                             req.responseText);
                     try {
                         var old = item.getField('extra')
-                        if (old.length == 0 || old.search(/Citations: \d{5}$/) != -1) {
+                        if (old.search(/\d{5} .+$/) != -1) {
+                            item.setField('extra', old.replace(/\d{5} /, 'Citations: ' + citations + '\r\n'))
+                        } else if (old.length == 0 || old.search(/Citations: \d{5}$/) != -1) {
                             item.setField('extra', 'Citations: ' + citations);
                         } else if (old.search(/Citations: \d{5}/) != -1) {
                             item.setField('extra', old.replace(/Citations: \d{5}/, 'Citations: ' + citations));

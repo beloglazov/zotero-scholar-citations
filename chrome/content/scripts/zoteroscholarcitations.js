@@ -149,12 +149,14 @@ Zotero.ScholarCitations.updateItem = function(item) {
                             req.responseText);
                     try {
                         var old = item.getField('extra')
-                        if (old.length == 0 || old.search(/Citations: \d{5}$/) != -1) {
-                            item.setField('extra', 'Citations: ' + citations);
-                        } else if (old.search(/Citations: \d{5}/) != -1) {
-                            item.setField('extra', old.replace(/Citations: \d{5}/, 'Citations: ' + citations));
+                        if (old.search(/\d{5} .+$/) != -1) {
+                            item.setField('extra', old.replace(/\d{5} /, citations + '\r\n'))
+                        } else if (old.length == 0 || old.search(/\d{5}$/) != -1) { // What does the second portion of this search do? Seems dangerous.
+                            item.setField('extra', citations);
+                        } else if (old.search(/\d{5}/) != -1) { // This might be bad if other data with 5+ digits are stored in Extra
+                            item.setField('extra', old.replace(/\d{5}/, citations));
                         } else {
-                            item.setField('extra', 'Citations: ' + citations + '\r\n' + old);
+                            item.setField('extra', citations + '\r\n' + old);
                         }
                         item.save();
                     } catch (e) {}

@@ -10,13 +10,14 @@
         em:maxVersion="20.*"/>
     <RDF:Description
         RDF:about="urn:mozilla:install-manifest"
-        em:id="zoteroscholarcitations@beloglazov.info"
+        em:id="zoteroscholarcitations@wiernik.workpsy.ch"
         em:name="Zotero Scholar Citations"
-        em:version="1.8.7"
+        em:version="1.8.7bw"
         em:type="2"
-        em:creator="Anton Beloglazov"
+        em:contributor="Anton Beloglazov"
+        em:creator="Brenton Wiernik"
         em:description="Zotero plugin for auto-fetching numbers of citations from Google Scholar"
-        em:homepageURL="http://beloglazov.info">
+        em:homepageURL="https://github.com/bwiernik/zotero-scholar-citations/">
         <em:type>2</em:type>
         <em:targetApplication RDF:resource="rdf:#$x61SL3"/>
         <em:targetApplication>

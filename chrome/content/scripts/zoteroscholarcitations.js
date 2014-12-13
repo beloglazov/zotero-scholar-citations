@@ -151,10 +151,20 @@ Zotero.ScholarCitations.updateItem = function(item) {
                         var old = item.getField('extra')
                         if (old.length == 0 || old.search(/^\d{5}$/) != -1) {
                             item.setField('extra', citations);
+                        } else if (old.search(/^\d{5} *\n/) != -1) {
+                            item.setField(
+                                    'extra',
+                                    old.replace(/^\d{5} */, citations + ' '));
+                        } else if (old.search(/^\d{5} *[^\n]+/) != -1) {
+                            item.setField(
+                                    'extra',
+                                    old.replace(/^\d{5} */, citations + ' \n'));
                         } else if (old.search(/^\d{5}/) != -1) {
-                            item.setField('extra', old.replace(/^\d{5}/, citations));
+                            item.setField(
+                                    'extra',
+                                    old.replace(/^\d{5}/, citations));
                         } else {
-                            item.setField('extra', citations + ' ' + old);
+                            item.setField('extra', citations + ' \n' + old);
                         }
                         item.save();
                     } catch (e) {}

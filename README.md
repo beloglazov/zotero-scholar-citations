@@ -11,7 +11,7 @@ Currently, Zotero doesn't have any special field for the number of citations, th
 The add-on supports both versions of Zotero:
 
 1. Zotero Standalone:
-  - Download the add-on from https://github.com/beloglazov/zotero-scholar-citations/raw/master/builds/zotero-scholar-citations-1.8.8-fx.xpi
+  - Download the add-on from https://github.com/beloglazov/zotero-scholar-citations/raw/master/builds/zotero-scholar-citations-1.9.0-fx.xpi
   - In Zotero Standalone go to Tools -> Add-ons -> click the settings button in the top-right corner -> Install Add-on From File -> select the downloaded file and restart Zotero.
 2. Zotero for Firefox:
   - Install the Firefox add-on from https://addons.mozilla.org/en-us/firefox/addon/zotero-scholar-citations/

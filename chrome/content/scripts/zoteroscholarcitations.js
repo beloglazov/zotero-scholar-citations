@@ -180,14 +180,14 @@ Zotero.ScholarCitations.updateItem = function(item) {
                     req.status == 503) {
                 alert(Zotero.ScholarCitations.captchaString);
                 req2 = new XMLHttpRequest();
-                req2.open('GET', baseUrl, true);
+                req2.open('GET', url, true);
                 req2.onreadystatechange = function() {
                     if (req2.readyState == 4) {
                         if (typeof ZoteroStandalone !== 'undefined') {
-                            ZoteroStandalone.openInViewer(baseUrl);
+                            ZoteroStandalone.openInViewer(url);
                         } else {
                             window.gBrowser.loadOneTab(
-                                    baseUrl, {inBackground: false});
+                                    url, {inBackground: false});
                         }
                         Zotero.ScholarCitations.resetState();
                     }

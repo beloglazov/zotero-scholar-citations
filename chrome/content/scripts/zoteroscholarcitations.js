@@ -125,7 +125,7 @@ Zotero.ScholarCitations.generateItemUrl = function(item) {
     var creators = item.getCreators();
     if (creators.length > 0) {
         url += '&as_sauthors=' +
-            encodeURIComponent(creators[0].ref.lastName).replace(/ /g, '+');
+            encodeURIComponent(creators[0].lastName).replace(/ /g, '+');
     } else {
         var date = item.getField('date');
         if (date != '') {
@@ -137,11 +137,6 @@ Zotero.ScholarCitations.generateItemUrl = function(item) {
 };
 
 Zotero.ScholarCitations.updateItem = function(item) {
-    if (typeof item.attachmentHash !== 'undefined') {
-        Zotero.ScholarCitations.updateNextItem();
-        return;
-    }
-
     var req = new XMLHttpRequest();
     var url = Zotero.ScholarCitations.generateItemUrl(item);
     req.open('GET', url, true);

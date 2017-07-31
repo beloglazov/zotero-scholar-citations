@@ -50,7 +50,7 @@ Zotero.ScholarCitations.updateSelectedEntity = function(libraryId) {
 
     if (collection) {
         var items = [];
-        collection.getChildren(true, false, 'item').forEach(function (item) {
+        collection.getChildItems(false).forEach(function (item) {
             items.push(Zotero.Items.get(item.id));
         });
         Zotero.ScholarCitations.updateItems(items);
@@ -61,7 +61,7 @@ Zotero.ScholarCitations.updateSelectedEntity = function(libraryId) {
         }
         var items = [];
         group.getCollections().forEach(function(collection) {
-            collection.getChildren(true, false, 'item').forEach(function(item) {
+            collection.getChildItems(false).forEach(function(item) {
                 items.push(Zotero.Items.get(item.id));
             })
         });

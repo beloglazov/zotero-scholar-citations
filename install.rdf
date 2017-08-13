@@ -12,7 +12,7 @@
         RDF:about="urn:mozilla:install-manifest"
         em:id="zoteroscholarcitations@beloglazov.info"
         em:name="Zotero Scholar Citations"
-        em:version="1.9.2"
+        em:version="1.9.3"
         em:type="2"
         em:creator="Anton Beloglazov"
         em:description="Zotero plugin for auto-fetching numbers of citations from Google Scholar"

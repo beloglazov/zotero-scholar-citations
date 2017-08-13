@@ -116,7 +116,7 @@ Zotero.ScholarCitations.updateNextItem = function() {
 };
 
 Zotero.ScholarCitations.generateItemUrl = function(item) {
-    var baseUrl = 'http://scholar.google.com/';
+    var baseUrl = 'https://scholar.google.com/';
     var url = baseUrl +
         'scholar?hl=en&as_q=' +
         encodeURIComponent(item.getField('title')).replace(/ /g, '+') +
@@ -178,7 +178,11 @@ Zotero.ScholarCitations.updateItem = function(item) {
                 req2.open('GET', url, true);
                 req2.onreadystatechange = function() {
                     if (req2.readyState == 4) {
-                        if (typeof ZoteroStandalone !== 'undefined') {
+                        if (typeof Zotero.launchURL !== 'undefined') {
+                            Zotero.launchURL(url);
+                        } else if (typeof Zotero.openInViewer !== 'undefined') {
+                            Zotero.openInViewer(url);
+                        } else if (typeof ZoteroStandalone !== 'undefined') {
                             ZoteroStandalone.openInViewer(url);
                         } else {
                             window.gBrowser.loadOneTab(

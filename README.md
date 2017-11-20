@@ -13,6 +13,9 @@ The add-on supports both versions of Zotero:
 1. Zotero Standalone:
   - Download the add-on from https://github.com/beloglazov/zotero-scholar-citations/raw/master/builds/zotero-scholar-citations-1.9.3-fx.xpi
   - In Zotero Standalone go to Tools -> Add-ons -> click the settings button in the top-right corner -> Install Add-on From File -> select the downloaded file and restart Zotero.
+  - As shown below, press on 1 and check the extera option 2, a new coloumn will be added 3, then you can right click on any entery in your library and select update citations 4.
+  
+  ![]([IMG]http://i63.tinypic.com/2mpde1w.jpg[/IMG]?raw=true "Optional Title")
 2. Zotero for Firefox:
   - Install the Firefox add-on from https://addons.mozilla.org/en-us/firefox/addon/zotero-scholar-citations/
 

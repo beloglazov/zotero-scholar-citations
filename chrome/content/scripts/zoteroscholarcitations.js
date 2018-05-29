@@ -143,7 +143,7 @@ Zotero.ScholarCitations.updateItem = function(item) {
 
     req.onreadystatechange = function() {
         if (req.readyState == 4) {
-            if (req.status == 200 && req.responseText.search("RecaptchaOptions") == -1) {
+            if (req.status == 200 && req.responseText.search("www.google.com/recaptcha/api.js") == -1) {
                 if (item.isRegularItem() && !item.isCollection()) {
                     var citations = Zotero.ScholarCitations.getCitationCount(
                             req.responseText);
@@ -178,12 +178,12 @@ Zotero.ScholarCitations.updateItem = function(item) {
                 req2.open('GET', url, true);
                 req2.onreadystatechange = function() {
                     if (req2.readyState == 4) {
-                        if (typeof Zotero.launchURL !== 'undefined') {
-                            Zotero.launchURL(url);
-                        } else if (typeof Zotero.openInViewer !== 'undefined') {
+                        if (typeof Zotero.openInViewer !== 'undefined') {
                             Zotero.openInViewer(url);
                         } else if (typeof ZoteroStandalone !== 'undefined') {
                             ZoteroStandalone.openInViewer(url);
+                        } else if (typeof Zotero.launchURL !== 'undefined') {
+                            Zotero.launchURL(url);
                         } else {
                             window.gBrowser.loadOneTab(
                                     url, {inBackground: false});

@@ -149,20 +149,20 @@ Zotero.ScholarCitations.updateItem = function(item) {
                             req.responseText);
                     try {
                         var old = item.getField('extra')
-                            if (old.length == 0 || old.search(/^\d{5}$/) != -1) {
+                            if (old.length == 0 || old.search(/^(\d{5}|No Citation Data)$/) != -1) {
                                 item.setField('extra', citations);
-                            } else if (old.search(/^\d{5} *\n/) != -1) {
+                            } else if (old.search(/^(\d{5}|No Citation Data) *\n/) != -1) {
                                 item.setField(
                                         'extra',
-                                        old.replace(/^\d{5} */, citations + ' '));
-                            } else if (old.search(/^\d{5} *[^\n]+/) != -1) {
+                                        old.replace(/^(\d{5}|No Citation Data) */, citations + ' '));
+                            } else if (old.search(/^(\d{5}|No Citation Data) *[^\n]+/) != -1) {
                                 item.setField(
                                         'extra',
-                                        old.replace(/^\d{5} */, citations + ' \n'));
-                            } else if (old.search(/^\d{5}/) != -1) {
+                                        old.replace(/^(\d{5}|No Citation Data) */, citations + ' \n'));
+                            } else if (old.search(/^(\d{5}|No Citation Data)/) != -1) {
                                 item.setField(
                                         'extra',
-                                        old.replace(/^\d{5}/, citations));
+                                        old.replace(/^(\d{5}|No Citation Data)/, citations));
                             } else {
                                 item.setField('extra', citations + ' \n' + old);
                             }
@@ -211,16 +211,22 @@ Zotero.ScholarCitations.fillZeros = function(number) {
 
 Zotero.ScholarCitations.getCitationCount = function(responseText) {
     if (responseText == '') {
-        return '00000';
+        return 'No Citation Data';
     }
 
     var citeStringLength = 15;
     var lengthOfCiteByStr = 9;
     var citeArray = new Array();
 
+    // 'gs_r gs_or gs_scl' is classes of each item element in search result
+    var resultExists = (responseText.match('gs_r gs_or gs_scl').length > 0);
+
     var citeExists = responseText.search('Cited by');
     if (citeExists == -1) {
-        return '00000';
+        if (resultExists)
+            return '00000';
+        else
+            return 'No Citation Data';
     }
 
     var tmpString = responseText.substr(citeExists, citeStringLength);

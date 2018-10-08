@@ -219,7 +219,7 @@ Zotero.ScholarCitations.getCitationCount = function(responseText) {
     var citeArray = new Array();
 
     // 'gs_r gs_or gs_scl' is classes of each item element in search result
-    var resultExists = (responseText.match('gs_r gs_or gs_scl').length > 0);
+    var resultExists = responseText.match('gs_r gs_or gs_scl') ? true : false;
 
     var citeExists = responseText.search('Cited by');
     if (citeExists == -1) {

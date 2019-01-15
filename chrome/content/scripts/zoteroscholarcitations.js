@@ -143,26 +143,26 @@ Zotero.ScholarCitations.updateItem = function(item) {
 
     req.onreadystatechange = function() {
         if (req.readyState == 4) {
-            if (req.status == 200 && req.responseText.search("RecaptchaOptions") == -1) {
+            if (req.status == 200 && req.responseText.search("www.google.com/recaptcha/api.js") == -1) {
                 if (item.isRegularItem() && !item.isCollection()) {
                     var citations = Zotero.ScholarCitations.getCitationCount(
                             req.responseText);
                     try {
                         var old = item.getField('extra')
-                            if (old.length == 0 || old.search(/^\d{5}$/) != -1) {
+                            if (old.length == 0 || old.search(/^(\d{5}|No Citation Data)$/) != -1) {
                                 item.setField('extra', citations);
-                            } else if (old.search(/^\d{5} *\n/) != -1) {
+                            } else if (old.search(/^(\d{5}|No Citation Data) *\n/) != -1) {
                                 item.setField(
                                         'extra',
-                                        old.replace(/^\d{5} */, citations + ' '));
-                            } else if (old.search(/^\d{5} *[^\n]+/) != -1) {
+                                        old.replace(/^(\d{5}|No Citation Data) */, citations + ' '));
+                            } else if (old.search(/^(\d{5}|No Citation Data) *[^\n]+/) != -1) {
                                 item.setField(
                                         'extra',
-                                        old.replace(/^\d{5} */, citations + ' \n'));
-                            } else if (old.search(/^\d{5}/) != -1) {
+                                        old.replace(/^(\d{5}|No Citation Data) */, citations + ' \n'));
+                            } else if (old.search(/^(\d{5}|No Citation Data)/) != -1) {
                                 item.setField(
                                         'extra',
-                                        old.replace(/^\d{5}/, citations));
+                                        old.replace(/^(\d{5}|No Citation Data)/, citations));
                             } else {
                                 item.setField('extra', citations + ' \n' + old);
                             }
@@ -178,12 +178,12 @@ Zotero.ScholarCitations.updateItem = function(item) {
                 req2.open('GET', url, true);
                 req2.onreadystatechange = function() {
                     if (req2.readyState == 4) {
-                        if (typeof Zotero.launchURL !== 'undefined') {
-                            Zotero.launchURL(url);
-                        } else if (typeof Zotero.openInViewer !== 'undefined') {
+                        if (typeof Zotero.openInViewer !== 'undefined') {
                             Zotero.openInViewer(url);
                         } else if (typeof ZoteroStandalone !== 'undefined') {
                             ZoteroStandalone.openInViewer(url);
+                        } else if (typeof Zotero.launchURL !== 'undefined') {
+                            Zotero.launchURL(url);
                         } else {
                             window.gBrowser.loadOneTab(
                                     url, {inBackground: false});
@@ -211,16 +211,22 @@ Zotero.ScholarCitations.fillZeros = function(number) {
 
 Zotero.ScholarCitations.getCitationCount = function(responseText) {
     if (responseText == '') {
-        return '00000';
+        return 'No Citation Data';
     }
 
     var citeStringLength = 15;
     var lengthOfCiteByStr = 9;
     var citeArray = new Array();
 
+    // 'gs_r gs_or gs_scl' is classes of each item element in search result
+    var resultExists = responseText.match('gs_r gs_or gs_scl') ? true : false;
+
     var citeExists = responseText.search('Cited by');
     if (citeExists == -1) {
-        return '00000';
+        if (resultExists)
+            return '00000';
+        else
+            return 'No Citation Data';
     }
 
     var tmpString = responseText.substr(citeExists, citeStringLength);

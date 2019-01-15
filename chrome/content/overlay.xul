@@ -32,8 +32,7 @@
     </popup>
 
     <popup
-        id="zotero-itemmenu"
-        onpopupshowing="ZoteroPane.buildItemContextMenu();">
+        id="zotero-itemmenu">
         <menuitem
             id="zotero-itemmenu-scholarcitations"
             label="&zotero.scholarcitations.update.label;"
